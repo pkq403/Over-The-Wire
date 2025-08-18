@@ -1,0 +1,6 @@
+27 -> 28
+You just have to clone a local git repository with this command:
+git clone ssh://bandit27-git@localhost:2220/home/bandit27-git/repo
+
+Paste the password of bandit27 to login as bandit27-git
+then in the repo is a README file with the password:

@@ -1,0 +1,9 @@
+5 -> 6:
+I have to find a file inside dir inhere/ that has the next conditions:
+	* human-readable
+	* size: 1033B
+	* not - executable
+We use this command to find a file non executable with size 1033B
+"find . -type f ! -executable -size 1033c | file"
+
+Then we assert that is an ASCII file with file command

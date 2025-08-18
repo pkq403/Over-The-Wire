@@ -1,0 +1,30 @@
+26 -> 27
+
+The hard part here is to get a bandit26's shell.
+We have to enter in vim mode like in the last exercise and once we have that we have to achieve a shell within vim this should be easy because you can do
+
+:shell
+
+But the problem is that the vim option shell has taken the $SHELL environment variable value which is /usr/bin/showtext so it does not give us anything. (to see that value we cando:)
+
+:set shell
+
+To see all this VIM variables/options we can do
+
+:set all
+
+
+This options are important because they influence in some VIM commands. Once we have set "shell" to /bin/bash with
+
+:set shell /bin/bash
+
+we can do
+
+
+:shell
+
+and obtain a bash. In bandit26's home directory there is a binary called bandit27_do which allows us to execute a command being bandit27 so we do
+
+./bandit27_do cat /etc/bandit_pass/bandit27
+
+And that's how we obtain bandit27 password

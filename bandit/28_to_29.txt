@@ -1,0 +1,10 @@
+28 -> 29:
+Here is the same (cloning a repo), but we have to go back 1 commit to see the leaked info
+so we do
+git clone ssh://bandit28-git@localhost:2220/home/bandit28-git/repo
+Then we do 
+git log
+To see the commit history, we see that the last commit is commented as  "fix info leak" so we move to the previous one with:
+git checkout 68314e012fbaa192abfc9b78ac369c82b75fab8f
+
+And we obtain the password that was PATCH on the README file

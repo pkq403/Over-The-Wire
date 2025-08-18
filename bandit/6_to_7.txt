@@ -1,0 +1,12 @@
+6 -> 7:
+Have to find a file "somewhere on the server", so it can we anywhere with this
+conditions:
+	* owned by user bandit7
+	* owned by group bandit6
+	* 33 bytes in size
+"find / -type f -user bandit7 -group bandit6 -size 33c 2> /dev/null"
+
+We use this find command with this filters and send stderr to /dev/null so I dont seee those files or directories that I do not have permissions to read (inspect),
+
+The command outputs this path:
+/var/lib/dpkg/info/bandit7.password

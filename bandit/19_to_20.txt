@@ -1,0 +1,5 @@
+19 -> 20:
+
+The "bandit20-do" binary with setuid, means that whenever it gets executed it will be executed as the owner in this case bandit20, that's why we can do this and obtain the password:
+
+./bandit20-do cat /etc/bandit_pass/bandit20

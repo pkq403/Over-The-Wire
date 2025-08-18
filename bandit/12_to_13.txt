@@ -1,0 +1,21 @@
+12 -> 13:
+
+Here we have an data.txt that is a file compressed several times so we will have to check each time what type of compression does the file have, and then use the proper compressor to decompresse it.
+We check which type of file it is with
+
+file
+
+This commands are used to decompress the file 
+
+For gzip compressed files, we decompressed'em with:
+gzip -d fichero.gz
+gunzip fichero.gz
+
+For bzip, we have used
+bzip2 -d fichero.bz2
+
+For tar
+tar -xf fichero.tar
+
+After lots of decompressions, we obtain an ASCII text file
+which give use the password.

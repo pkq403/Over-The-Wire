@@ -1,0 +1,26 @@
+22 -> 23
+
+We do as in the previous one, read the cronjob and read the script that the cronjob is executing.
+
+this is the script:
+```
+#!/bin/bash
+
+myname=$(whoami)
+mytarget=$(echo I am user $myname | md5sum | cut -d ' ' -f 1)
+
+echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
+
+cat /etc/bandit_pass/$myname > /tmp/$mytarget
+```
+
+As we see is just hashing with md5sum the string "I am user bandit23"
+so we do
+
+ echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+
+And here we obtain the hash to read the file
+
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+
+And obtain the password.

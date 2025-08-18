@@ -1,0 +1,7 @@
+1 -> 2:
+key: reading a file called '-'
+To read this file so the command interpreter does not missunderstand it with a '-'
+argument you do this
+cat ./-
+or
+cat < -

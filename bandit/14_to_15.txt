@@ -1,0 +1,17 @@
+14 -> 15:
+
+The instructions told us:
+"The password for the next level can be retrieved by submitting the password of the current
+level to port 30000 on localhost".
+
+So I understand that we have to look up the service running in port 30000, once we have connected to bandit14@bandit.lavs.overthewire.org with the password we obtained in the previous exercise.
+So we do
+
+nmap -p 30000 localhost
+
+And nmap tell us that ndmps is running in port 30000, 
+ndmps (Network Data Management Protocol Secure), el cual es un protocolo para la gestion de servidores NAS. Para conectarnos probamos a conectarnos con Telnet y mandar la contraseña del ejercicio anterior.
+
+telnet localhost 30000
+
+La mandamos y unos segundos despues obtenemos la password.

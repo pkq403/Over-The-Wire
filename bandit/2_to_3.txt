@@ -1,0 +1,4 @@
+2 -> 3:
+I had to read a file called --spaces in this filename--
+to open this file you have to use double quotes (important single quotes are not valid), so
+cat < "--spaces in this filename--"

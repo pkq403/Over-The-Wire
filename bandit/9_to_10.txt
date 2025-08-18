@@ -1,0 +1,4 @@
+9 -> 10:
+The password is in a data.txt that is a binary file and the instruction says that the password is a string precede by several '='.
+So first we translate the data into ASCII and then we grep it with this
+strings data.txt | grep =

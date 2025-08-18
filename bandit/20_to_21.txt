@@ -1,0 +1,12 @@
+20 -> 21:
+
+Open 2 terminals with tmux
+in A do
+
+nc -lnvp 50438
+
+in B terminal
+./suconnect 50438
+
+then we send the password of the previous exercise so we obtain in the A terminal the password
+for bandit21.

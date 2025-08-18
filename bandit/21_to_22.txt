@@ -1,0 +1,15 @@
+21 -> 22:
+
+We look at /etc/cron.d and find a file called "cronjob_bandit22" when we dump its content we find this
+
+@reboot bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+* * * * * bandit22 /usr/bin/cronjob_bandit22.sh &> /dev/null
+
+This means it's executing this script (every minute) "/usr/bin/cronjob_bandit22.sh" so we cat that script and we obtain:
+
+#!/bin/bash
+chmod 644 /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+cat /etc/bandit_pass/bandit22
+
+
+This means that is printing the bandit22 pw in that file so we cat that file and we obtain the password.

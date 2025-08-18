@@ -1,0 +1,9 @@
+11 -> 12:
+The data.txt is rot13 (each letter is rotated 13 positions in alphabet) so we can translate it
+using the "tr" command
+
+cat data.txt | tr 'A-Za-z' 'N-ZA-Mn-za-m'
+
+Decompose of the use of tr
+Here we map the uppercase "A-Z" to "N-ZA-M" so we map the set of 26 letter A-Z to the set of 26 letters N-ZA-M and the same for lowercase.
+

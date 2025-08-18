@@ -1,0 +1,12 @@
+30 -> 31
+The same as the last one we should run
+git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
+
+Here we check for commits, branches, or something weird but we didn't see nothing till
+we do
+git tag
+
+Then we see "secret". It's an annotated tag so to see it we do
+git show secret
+
+and we obtain the password:

@@ -1,0 +1,49 @@
+32 -> 33
+
+We entry in a special shell where everything is uppercased. The only way to escape it is through an special variable $0 which has a reference to a shell. We can check that doing in our local pc.
+
+echo $0
+
+After doing
+$0
+
+We entry in a shell where we can easily cat the bandit33 password with:
+
+cat /etc/bandit_pass/bandit33
+
+And we finally get the password.
+
+Notes:
+There're special variables in POSIX shells.
+$0 -> script's name that is currently executing, 
+	if you execute it in a shell it will return the shell name.
+
+$1, $2, ..., $9 -> positional arguments received by the script.
+
+$# -> Total number of arguments received by the script.
+
+$* -> all positional arguments gather in a string ("arg1 arg2 arg3 ...")
+
+$@ -> all positional arguments, but every element splitted. (very useful with "$@")
+
+$$ -> PID (Process ID) of the current process.
+
+$! -> PID of the last executed process in second plane.
+
+$? -> Exit code of the last executed command.
+
+$_ -> last argument of the last executed command
+
+$- -> Active options in the current shell.
+
+$IFS -> Internal Field Separator, set of chars that the shell use to split words (by default: space, tab, or line jump '\n')
+
+$PWD -> Current Working Directory
+
+$OLDPWD -> Previous current directory
+
+$RANDOM -> Generates a RANDOM number between 0 and 32767 (integer 4 bytes limits)
+
+$LINENO -> current line of the active script
+
+$FUNCNAME -> Name of the current function.

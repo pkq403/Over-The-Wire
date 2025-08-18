@@ -1,0 +1,16 @@
+29 -> 30
+*remember you should use the "mktemp -d" so you could clone the repo in a persistent way inside the otw machine*
+
+Here is the same (cloning a repo) but we have to move to the dev branch to extract the credentials as simple as that, so we do.
+
+git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
+
+Then we check what branches are created in the repo with
+
+git branch -a
+
+Then we create the dev branch linked with the remote "dev" branch so we do
+
+git checkout -b dev origin/dev
+
+Then we just cat the README file, so we obtain the password.

@@ -1,0 +1,8 @@
+8 -> 9:
+The password is stored in a file with so much lines (with formats similar to the password style) every one is repeated but one. Too get the only one that is not repeated we'll use this command:
+
+sort data.txt | uniq -u
+
+the sort command puts the same lines together so "uniq -u" can filter out every line except the only line that has only one occurrence which is...
+
+Note: uniq without parameters, squash the repetition so it filters out everything but the first occurrence of that line

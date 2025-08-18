@@ -1,0 +1,8 @@
+4 -> 5:
+We have to inspect all files in inhere/ to see which one has human readable content
+The instructions recommend to use "reset" command if the terminal gets messed up
+
+What I did is run
+head -n 1 ./-*
+So I see the first line of all files and see which one is human readable
+probably it would have been easier using the "file" command

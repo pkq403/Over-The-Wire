@@ -1,0 +1,5 @@
+10 -> 11:
+For this one the password is encoded in base64 in the data.txt file at home dir.
+So we just have to decoded from base64 to retrieve the content
+So we do
+base64 --decode data.txt

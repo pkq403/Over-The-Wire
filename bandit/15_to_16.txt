@@ -1,0 +1,14 @@
+15 -> 16:
+
+The instructions tell us to submit the password of the previous exercise using SSL/TLS encription (the one that is used in HTTPS) to localhost:30001.
+
+First, we check what service is running in that port with nmap
+
+nmap -p 30001 localhost
+
+And we get this service "pago-services1". It does not give us any info
+So we tried directly to connect to localhost:30001 through SSL/TLS we do that with openssl s_client
+
+openssl s_client -connect localhost:30001
+
+We obtain some info about the certificate (CA) used for the connections, then we paste the password of the previous exercise, we press enter and we get the password.

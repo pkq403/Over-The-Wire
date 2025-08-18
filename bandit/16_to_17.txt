@@ -1,0 +1,27 @@
+16 -> 17:
+
+So first of all we run scripts of service and version recognizion with nmap on those
+ports, and we obtain
+
+PORT      STATE  SERVICE VERSION
+31046/tcp open   echo
+31518/tcp  open   ssl/echo
+31691/tcp open   echo
+31790/tcp open   ssl/unknown
+31960/tcp open   echo
+
+Here I notice that the only one that has no echo is 31790 so we tried to connect to it through ssl/tls with command:
+
+openssl s_client -connect localhost:31790
+
+The connection success but when I tried to send the password I get "KEYUPDATE" so I read the manual of openssl s_client in the "CONNECTED COMMANDS" section.
+
+In the commnads section one of the commands is "K" 
+and the password of the previous exercise.
+
+As you see it starts with "K" so interprets it as a "K" to make it ignore that we have to call it with the "-quiet" parameter as it says in the manual like this
+
+openssl s_client -connect localhost:31790
+
+that returns an RSA private key to connect to the next exercise
+

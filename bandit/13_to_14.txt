@@ -1,0 +1,15 @@
+13 -> 14:
+
+For this one we have to log in as bandit14 (but we're in bandit13) but we have a private rsa ssh key in the home directory. The public pair of that key is an authorized key for the ssh server to login as bandit14 so we can see the password that is stored in /etc/bandit_pass/bandit14.
+
+So to do that we copy the private key on our localhost directory ~/.ssh/over_the_wire_pkey
+this will bring us access to bandit14@bandit.labs.overthewire.org, if we run the command
+
+ssh -i .ssh/otw_pkey bandit14@bandit.labs.overthewire.org -p 2220 
+
+If we want to omit the -i (identity file) parameter we could have add this to the 
+~/.ssh/config
+Host myserver
+    HostName bandit.labs.overthewire.org
+    User bandit14
+    IdentityFile ~/.ssh/myserver

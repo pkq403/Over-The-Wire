@@ -1,0 +1,30 @@
+25 -> 26:
+
+NOTE: if you’re a Windows user and typically use Powershell to ssh into bandit: Powershell is known to cause issues with the intended solution to this level. You should use command prompt instead.
+
+Using this command
+
+cat /etc/passwd | grep bandit26
+
+we can see this:
+bandit26:x:11026:11026:bandit level 26:/home/bandit26:/usr/bin/showtext
+
+and
+/usr/bin/showtext:
+
+#!/bin/sh
+
+export TERM=linux
+
+exec more ~/text.txt
+exit 0
+
+It's important to say that in bandit25 home directory there's an ssh private key to login into bandit 26, the problem is that when you login it automatically exits out because of /usr/bin/showtext
+
+We should look at the more manual and see that we can enter vim mode with "v"
+But how can we press that "v"
+First we have to minimize our terminal so the text of "text.txt" that it's an ASCII drawing of the text: "bandit 26" gets read as different lanes then we can scroll through the text and during the scroll we can press "v", which will give us vim mode, where we can press
+
+":e /etc/bandit_pass/bandit26"
+
+To see the bandit 26 password.

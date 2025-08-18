@@ -1,0 +1,10 @@
+31 -> 32
+This time is the same you do
+
+git clone ssh://bandit29-git@localhost:2220/home/bandit29-git/repo
+
+But now you have just to create key.txt file with the instructions written in the README.md
+commit it and push it to the remote. Then you will obtain the password.
+
+Note:
+the only important thing is to delete the "*.txt" entry in the .gitignore so you can push it to the remote repo

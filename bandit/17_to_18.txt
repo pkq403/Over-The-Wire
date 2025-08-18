@@ -1,0 +1,12 @@
+17 -> 18:
+
+First we copy the RSA private key obtained in the previous exercise in a file inside ~/.ssh
+and give it permissions over the owner because if it has permissions in groups or others it will not stablish the connection.
+
+NOTE: if you have solved this level and see ‘Byebye!’ when trying to log into bandit18, this is related to the next level, bandit19"
+
+We just do :
+
+diff passwords.old passwords.new
+
+and take the password.

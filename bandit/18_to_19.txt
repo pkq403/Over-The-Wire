@@ -1,0 +1,7 @@
+18 -> 19:
+
+When we log in it just instantly logs out because of the .bashrc, but we can still run a command through ssh before it "logs in" if we do
+
+ssh bandit18@bandit.labs.overthewire.org -p 2220 'cat readme'
+
+With this we can run the command before "log in" so we obtain the password.
