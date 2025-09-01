@@ -1,0 +1,16 @@
+3 -> 4
+
+This is so much easier.
+There's an executable "level3" at home dir. First we examine the symbols of the executable for example with
+nm -n level3
+
+and we see that there are call to shared libraries so we can use ltrace to see how does the program calls this functions
+
+ltrace level3
+
+Once we do this we see that there're 2 strcmp, the first one is just an author comment I guess, and the second one is the important in which we see that is comparing to "snlprintf\n" So we introduce that and we got the shell!
+
+Then we just
+cat /etc/leviathan_pass/leviathan4
+
+

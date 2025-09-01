@@ -1,0 +1,52 @@
+1 -> 2
+
+For this one is necessary to reverse engineering the ELF executable binary.
+
+We can see the file type with "file", and we obtain:
+
+check: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=990fa9b7d511205601669835610d587780d0195e, for GNU/Linux 3.2.0, not stripped
+
+Then we obtain the binary ELF headers with
+
+readelf -s <binary>
+
+we can do too, 
+
+nm -n <binary> (it's the same but sorted)
+
+Here we obtain some tags/functions of the binary
+It can be useful to obtain the printable characters of the binary file with:
+strings -a -tx <binary>
+
+
+But we need to obtain the value of some registers (or in this case some values allocated in the stack of the program) to see with what is the program comparing the password that we submit with the real password saved in the binary.
+
+We can obtain the Assembly with this:
+objdump -d -M intel <binary>
+
+
+But to reverse engineer, is better to use...
+We use GDB (GNU Debugger).
+
+Here we can see the assembly instructions with
+disassemble "main"(function name)
+
+and we can put breakpoints with
+
+break *0x43253454
+
+We can see the value of the registers during the program execution with
+info registers
+
+We can see what's in memory (in this case the stack) with:
+e.g
+x/16wx 0x432ff34
+
+x -> read from memory
+16 -> number of
+w -> words (4B)
+x -> in hexadecimal
+
+Knowing all this we can set a breakpoint before strcmp so we can see the value of the register at that moment (better to say that we have to look at the values stored in the stack) and we see that the password inputted is being compared with the string "xxxxx"(can't tell because of over the wire rules). Then we input that string and we get the shell where we can read /etc/leviathan_pass/leviathan2
+
+Note for my future version -> it's so much easier using ltrace

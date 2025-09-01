@@ -1,0 +1,63 @@
+2 -> 3:
+
+Here we are with another executable in home called "prinfile". 
+When we execute
+
+file printfile
+
+we obtain:
+printfile: setuid ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=79cfa8b87bb611f9cf6d6865010709e2ba5c8e3f, for GNU/Linux 3.2.0, not stripped
+
+We disassemble the main function with gdb and we see that is calling C access function that runs as the RUID (Real UID, the one who launch the program (in this case leviathan2)), and not as the EUID (Effective UID, the one that is supposed to be running the program for permission checks, for example in this case the suid permission is given for the executable so the EUID will be the author of the file, leviathan3)
+So probably we can bypass the program if we modify the value of a registry, so the access function do not check if we have read permissions over the file and instead checks merely if the file exists, so it'll be true and the program will execute as is supposed to be.
+
+Direction of call <access@plt>: 0x0804924b
+
+Tries:
+Well I have bypassed the access function puttin a 0 in the (int) mode parameter so it checks the existence and not the read permission.
+But I have not found a way to bypass the setreuid so I can set it to leviathan3 id (12003) because the program calls the function setting ruid and euid to 12002 (leviathan2) that's why I cannot read the file.
+
+Error:
+I was doing it good the idea was good but I was modifying the registers after they were pushed to stack so it didn't have any effect.
+
+Note:
+The idea was correct (at binary cracking level) but the problem is that when you run a binary from GDB it does not inherit the SUID property for security reasons that's exactly why the setruid call was failing despite of the "correct" changes that I apply to it (setting ruid to leviathan2 and euid to leviathan3).
+So it was simply not posible to do that from GDB.
+I was trying to do something so much difficult that was the real solution is
+
+
+Real Solution (Seen on writeup).
+if we see some shared library after checking the symbols in the program for example with
+string printfile
+
+In this case we see strcmp (which is a shared library) this allow us to see function calls with "ltrace" so we do
+ltrace printfile .bashrc
+
+And we see how the functions treat the parameters, now we introduce 2 files
+ltrace printfile .bashrc .profile
+
+And we see that it only takes the first one
+
+HERE's the exploit!
+We test with a file with an espace like
+ltrace printfile "test pass" (all this files are obviously created in a temp dir)
+
+When we run this we see that access takes "test pass" so it will get bypasses because our file and we have read permissions. But in the system "/bin/cat" call it gets passed as
+"/bin/cat test pass".
+So because we know that this system call is gonna be executed as leviathan3 we can symlink one of those 2 files to /etc/leviathan_pass with:
+
+ln -s /etc/leviathan_pass/leviathan3 test
+
+(Important, you have to give read access to the temp directory to all users so leviathan3 could read from that dir)
+
+So when you'll do
+
+~/printfile "test pass"
+It will print the password
+
+Important points:
+-> Note how the arguments are passed to "access" and to "system". There's the key of the exploit.
+
+-> Note the important of symbolic links and filenames with spaces (this are really hacky things)
+
+
